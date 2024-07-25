@@ -1,5 +1,5 @@
-#!name=AdBlock and VIP Unlock
-#!desc=Block ads and unlock VIP features for various apps
+#!name =AdBlock and VIP Unlock
+#!desc =Block ads and unlock VIP features for various apps
 #!icon=https://example.com/icon.png
 
 [MITM]
@@ -41,3 +41,4 @@ FINAL, proxy
 [Host]
 # Hosts映射部分，可按需配置
 # example.com = 93.184.216.34
+
