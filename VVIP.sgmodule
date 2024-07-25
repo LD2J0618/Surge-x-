@@ -1,0 +1,43 @@
+#!name=AdBlock and VIP Unlock
+#!desc=Block ads and unlock VIP features for various apps
+#!icon=https://example.com/icon.png
+
+[MITM]
+enable = true
+hostname = *.iqiyi.com, *.youku.com, *.tencentvideo.com, *.bilibili.com, *.music.163.com, *.xiami.com, *.kugou.com, *.baidu.com, *.iqiyi.com, *.mgtv.com
+
+[Script]
+# 腾讯视频解锁VIP
+http-response ^https?:\/\/access\.video\.qq\.com\/interface\/get_user_info\? script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/TencentVideoCrack.js, requires-body=true, binary-body-mode=true
+
+# 爱奇艺解锁VIP
+http-response ^https?:\/\/iface2\.iqiyi\.com\/account\/auth\? script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/IQIYICrack.js, requires-body=true, binary-body-mode=true
+
+# 优酷去广告
+http-response ^https?:\/\/api\.mobile\.youku\.com\/videos\/player\/advert\.json script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/YoukuADCrack.js, requires-body=true, binary-body-mode=true
+
+# 网易云音乐解锁VIP
+http-response ^https?:\/\/music\.163\.com\/weapi\/user\/level script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/UnblockNeteaseMusic.js, requires-body=true, binary-body-mode=true
+
+# 哔哩哔哩去广告
+http-response ^https?:\/\/app\.bilibili\.com\/x\/v2\/splash\/list script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/BiliBiliADCrack.js, requires-body=true, binary-body-mode=true
+
+[URL Rewrite]
+# 这里可以添加更多的URL重写规则
+^https?:\/\/iface2\.iqiyi\.com\/account\/auth\? https://iface2.iqiyi.com/account/auth\?vip=1 302
+^https?:\/\/api\.mobile\.youku\.com\/videos\/player\/advert\.json$ reject
+
+[Rule]
+# 规则部分，按需添加
+DOMAIN-SUFFIX, iqiyi.com, proxy
+DOMAIN-SUFFIX, youku.com, proxy
+DOMAIN-SUFFIX, tencentvideo.com, proxy
+DOMAIN-SUFFIX, bilibili.com, proxy
+DOMAIN-SUFFIX, music.163.com, proxy
+IP-CIDR, 192.168.0.0/16, direct
+GEOIP, CN, direct
+FINAL, proxy
+
+[Host]
+# Hosts映射部分，可按需配置
+# example.com = 93.184.216.34
